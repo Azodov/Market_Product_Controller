@@ -1,5 +1,6 @@
 package com.fido.biznes.controller;
 
+import com.fido.biznes.config.CurrencyFormatter;
 import com.fido.biznes.model.Category;
 import com.fido.biznes.model.Product;
 import com.fido.biznes.repository.CategoryRepository;
@@ -15,6 +16,8 @@ public class AdminController {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+
+    CurrencyFormatter currencyFormatter = new CurrencyFormatter();
 
     public AdminController(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
@@ -49,6 +52,7 @@ public class AdminController {
 
     @PostMapping("/admin/addProduct")
     public String addProduct(@ModelAttribute("product") Product product) {
+        product.setProductPrice(currencyFormatter.formatDecimal(product.getProductPrice()));
         productRepository.save(product);
         return "redirect:/admin/products";
     }

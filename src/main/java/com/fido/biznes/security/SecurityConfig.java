@@ -1,4 +1,4 @@
-package com.fido.biznes.config;
+package com.fido.biznes.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
