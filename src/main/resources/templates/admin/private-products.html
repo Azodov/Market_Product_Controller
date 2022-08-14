@@ -13,8 +13,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
+        <div class="justify-content-end">
+            <div class="float-right">
                 <a th:href="@{/logout}" class="btn btn-danger">Chiqish</a>
             </div>
         </div>
@@ -23,7 +23,6 @@
                 <a th:href="@{/admin/addProduct/new}" class="btn btn-success mb-3 mt-4">Yangi tovar qo'shish</a>
                 <a th:href="@{/admin/addCategory/new}" class="btn btn-success mb-3 mt-4">Yangi kategoriya qo'shish</a>
             </div>
-
         </div>
         <table class="table table-dark" id="product-table">
             <thead class="thead-dark">
