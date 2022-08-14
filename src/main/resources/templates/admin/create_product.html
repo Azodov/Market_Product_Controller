@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Yangi Tovar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+      <div class="row">
+        <h1 class="text-center">Yangi Tovar</h1>
+        <div class="card-body">
+          <form th:action="@{/admin/addProduct}" th:object="${product}" method="POST">
+              <div class="form-group">
+                <select th:field="*{productType}" class="form-control" name="category">
+                    <option th:each="category: ${categories}" th:value="${category.getName()}" th:text="${category.getName()}"></option>
+              </div>
+            <div class="form-group">
+              <label for="productName">Tovar Nomi</label>
+              <input type="text" class="form-control" id="productName" name="productName" placeholder="Pro" th:field="*{productName}">
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Narxi</label>
+              <input type="number" class="form-control" id="productPrice" name="productPrice" placeholder="250.000" th:field="*{productPrice}">
+            </div>
+            <div class="form-group">
+              <label for="productCount">Tovar Soni</label>
+              <input type="number" class="form-control" id="productCount" name="productCount" placeholder="25" th:field="*{productCount}">
+            </div>
+            <div class="footer-body">
+              <button type="submit" class="btn btn-primary">Saqlash</button>
+              <button type="reset" class="btn btn-danger">Tozalash</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>

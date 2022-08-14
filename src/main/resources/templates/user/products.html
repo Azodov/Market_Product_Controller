@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Tovarlar</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-dark" id="product-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tovar Turi</th>
+                    <th scope="col">Tovar nomi</th>
+                    <th scope="col">Narxi</th>
+                    <th scope="col">Soni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product: ${products}">
+                    <div th:switch="${product.getProductCount()}">
+                        <div th:case="0">
+                            <td class="text-danger" th:text="${product.getId()}"></td>
+                            <td class="text-danger" th:text="${product.getProductType()}"></td>
+                            <td class="text-danger" th:text="${product.getProductName()}"></td>
+                            <td class="text-danger" th:text="${product.getProductPrice()}"></td>
+                            <td class="text-danger" th:text="${product.getProductCount()}"></td>
+                        </div>
+                        <div th:case="*">
+                            <td class="text-success" th:text="${product.getId()}"></td>
+                            <td class="text-success" th:text="${product.getProductType()}"></td>
+                            <td class="text-success" th:text="${product.getProductName()}"></td>
+                            <td class="text-success" th:text="${product.getProductPrice()}"></td>
+                            <td class="text-success" th:text="${product.getProductCount()}"></td>
+                        </div>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+    <script
+            type="text/javascript"
+            src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#product-table').DataTable({
+                'aoColumnDefs': [
+                    {
+                        'bSortable': false, 'aTargets': [-1]
+                    }]
+            })
+        });
+    </script>
+</body>
+</html>
